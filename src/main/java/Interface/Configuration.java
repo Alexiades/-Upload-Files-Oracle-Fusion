@@ -16,23 +16,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class Configuration {
+public class Configuration extends JPanel {
     private JTextField textField1;
     private JTextField textField2;
     private JTextField textField4;
     private JButton returnButton;
     private JButton applyButton;
     private JPasswordField passwordField1;
-    private JPanel interfazConf;
+    JPanel interfazConf;
     public static FileBasedConfigurationBuilder<FileBasedConfiguration> builder;
-    static JFrame frame = new JFrame("interfazConf");
 
 
     public Configuration() {
 
+
         returnButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                frame.setVisible(false);
+                //frame.setVisible(false);
                 MainInterface main = new MainInterface();
                 main.visible();
                 //   inactivarBotones(ejecutarButton, empleadoCreadoButton, jobButton, ausenciasButton, ausenciaModificadaButton, asignacionCreadaButton, asignacionModificadaButton, contratoCreadoButton, contratoModificadoButton, empleadoModificadoButton, empleadoTerminadoButton, locationButton, positionButton, organizationButton, compensaciónVariableButton, compensacionfijaButton, nominaButton);
@@ -54,8 +54,9 @@ public class Configuration {
 
                 // Create a file handler and associate it with the configuration
                 FileHandler handler = new FileHandler((FileBased) config);
+
 /*
-// Load another configuration source, for instance from a relative path
+                // Load another configuration source, for instance from a relative path
                 try {
 
                     handler.load("oracle.properties");
@@ -75,18 +76,11 @@ public class Configuration {
                     }
                     catch(ConfigurationException cex)
                     {
-                        // saving of the configuration file failed
                     }
-
-
-
-
-
-
-                //  props.setProperty("user", textField1.getText());
-
             }
         });
+
+        setting();
     }
 
     public org.apache.commons.configuration2.Configuration configPara() {
@@ -108,30 +102,16 @@ public class Configuration {
         return config;
     }
 
-    public void visible(){
+    public void setting(){
 
         org.apache.commons.configuration2.Configuration config=configPara();
 
                if(config != null){
 
-                   //config.setProperty("",
-
-                   //System.out.println(config.getString("endpoint"));
-
-                  textField1.setText(config.getString("endpoint"));
-
-                   //config.setProperty("user", textField2.getText());
-                   //textField1.setText(config.getString("user").toString());
-                  // config.setProperty("password", passwordField1.getPassword());
-                  // config.setProperty("path", textField4.getText());
-
-
-        }
-        frame.setContentPane(new Configuration().interfazConf);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setLocationRelativeTo(null);  // *** this will center your app ***
-        frame.setVisible(true);
-
+                   textField1.setText(config.getString("endpoint"));
+                   textField2.setText(config.getString("user"));
+                   passwordField1.setText(config.getString("password"));
+                   textField4.setText(config.getString("path"));
+               }
     }
 }
