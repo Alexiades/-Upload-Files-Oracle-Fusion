@@ -37,7 +37,7 @@ import java.util.zip.ZipOutputStream;
  *  - Zip files                      *
  *  - Upload files to Fusion         *
  *  - Process files in Fusion        *
- *                                   *
+ *  - Delete the files               *
  *************************************/
 
 
@@ -235,8 +235,7 @@ public abstract class UploadFile implements Runnable {
 
     /**
      *
-     * Procesamiento de ficheros en estado Upload/Import
-     * en Fusion
+     * Processes the files in status Upload/Import in Fusion
      *
      * @param Files
      * @param user

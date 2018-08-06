@@ -23,6 +23,7 @@ import org.apache.commons.configuration2.sync.ReadWriteSynchronizer;
  *                                   *
  *************************************/
 
+
 public class PropertiesOracle {
 
     //inicializacion de las variables
@@ -33,27 +34,6 @@ public class PropertiesOracle {
     public static PropertiesOracle getInstance() {
         return ourInstance;
     }
-/*
-    public static void setProperty(String key, String value ){
-
-        //super("oracle.properties");
-        Parameters params = new Parameters();
-        try {
-            builder = new FileBasedConfigurationBuilder<FileBasedConfiguration>(PropertiesConfiguration.class).configure(params.properties().setFileName("oracle.properties").setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
-            Configuration config;
-            config = builder.getConfiguration();
-            config.setProperty(key,value);
-            builder.save();
-
-        }
-        catch(ConfigurationException cex)
-            {
-                cex.printStackTrace();
-            }
-
-    }
-    */
-
 
     private PropertiesOracle() {
         //super("oracle.properties");

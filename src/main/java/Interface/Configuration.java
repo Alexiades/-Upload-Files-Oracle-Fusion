@@ -28,6 +28,10 @@ public class Configuration extends JPanel {
     public static FileBasedConfigurationBuilder<FileBasedConfiguration> builder;
 
 
+    /**
+     *  Constructor of the Configuration page
+     */
+
     public Configuration() {
 
 
@@ -36,8 +40,6 @@ public class Configuration extends JPanel {
                 //frame.setVisible(false);
                 MainInterface main = new MainInterface();
                 main.visible();
-                //   inactivarBotones(ejecutarButton, empleadoCreadoButton, jobButton, ausenciasButton, ausenciaModificadaButton, asignacionCreadaButton, asignacionModificadaButton, contratoCreadoButton, contratoModificadoButton, empleadoModificadoButton, empleadoTerminadoButton, locationButton, positionButton, organizationButton, compensaciónVariableButton, compensacionfijaButton, nominaButton);
-                //   Acciones.EmpleadoCreado(false);
             }
         });
 
@@ -65,20 +67,6 @@ public class Configuration extends JPanel {
                 // Create a file handler and associate it with the configuration
                 FileHandler handler = new FileHandler((FileBased) config);
 
-/*
-                // Load another configuration source, for instance from a relative path
-                try {
-
-                    handler.load("oracle.properties");
-                    // Store the resulting configuguration in a new file
-                    File out = new File("prueba.properties");
-                    handler.save(out);
-
-                } catch (ConfigurationException e1) {
-                    e1.printStackTrace();
-                }
-*/
-
                 // Make changes persistent
                     try
                     {
@@ -89,7 +77,7 @@ public class Configuration extends JPanel {
                     }
             }
         });
-
+        //Load the save configuration to access to the Api of Fusion
         setting();
     }
 
@@ -111,6 +99,10 @@ public class Configuration extends JPanel {
         }
         return config;
     }
+
+    /**
+     * Set up the configuration settings
+     */
 
     public void setting(){
 
