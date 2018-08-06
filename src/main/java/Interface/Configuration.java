@@ -10,6 +10,7 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.configuration2.io.FileBased;
 import org.apache.commons.configuration2.io.FileHandler;
 import org.apache.commons.configuration2.sync.ReadWriteSynchronizer;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -50,6 +51,15 @@ public class Configuration extends JPanel {
                     config.setProperty("user", textField2.getText());
                     config.setProperty("password", passwordField1.getPassword());
                     config.setProperty("path", textField4.getText());
+
+                    // configuration of the password:
+                    System.out.print(config.getList("password"));
+                    System.out.print(StringUtils.join(config.getList("password")));
+                    String pass = StringUtils.join(config.getList("password")).replace("[","").replace("]","").replace(",","");
+                    config.setProperty("password1",pass);
+
+
+
 
 
                 // Create a file handler and associate it with the configuration
@@ -110,7 +120,7 @@ public class Configuration extends JPanel {
 
                    textField1.setText(config.getString("endpoint"));
                    textField2.setText(config.getString("user"));
-                   passwordField1.setText(config.getString("password"));
+                   passwordField1.setText(config.getString("password1"));
                    textField4.setText(config.getString("path"));
                }
     }
