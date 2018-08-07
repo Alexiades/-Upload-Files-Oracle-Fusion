@@ -16,6 +16,8 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 
 public class Configuration extends JPanel {
     private JTextField textField1;
@@ -55,13 +57,16 @@ public class Configuration extends JPanel {
                     config.setProperty("path", textField4.getText());
 
                     // configuration of the password:
-                    System.out.print(config.getList("password"));
-                    System.out.print(StringUtils.join(config.getList("password")));
                     String pass = StringUtils.join(config.getList("password")).replace("[","").replace("]","").replace(",","");
-                    config.setProperty("password1",pass);
+                    // encriptation of the password
+                    config.clearProperty("password");
+                try {
+                    pass = Base64.getEncoder().encodeToString(pass.getBytes("utf-8"));
+                } catch (UnsupportedEncodingException e1) {
+                    e1.printStackTrace();
+                }
 
-
-
+                config.setProperty("password1",pass);
 
 
                 // Create a file handler and associate it with the configuration
@@ -109,10 +114,23 @@ public class Configuration extends JPanel {
         org.apache.commons.configuration2.Configuration config=configPara();
 
                if(config != null){
+                   String pass = "";
+                   int len=config.getString("password1").length();
 
                    textField1.setText(config.getString("endpoint"));
                    textField2.setText(config.getString("user"));
-                   passwordField1.setText(config.getString("password1"));
+                   //desencrypt the password
+                   if (len!=0) {
+
+                       try {
+
+                           byte[] decode = Base64.getDecoder().decode(config.getString("password1").getBytes());
+                           pass = new String(decode, "utf-8");
+                       } catch (UnsupportedEncodingException ex) {
+                           ex.printStackTrace();
+                       }
+                   }
+                   passwordField1.setText(pass);
                    textField4.setText(config.getString("path"));
                }
     }
