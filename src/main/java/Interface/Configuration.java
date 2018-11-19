@@ -66,7 +66,7 @@ public class Configuration extends JPanel {
                     e1.printStackTrace();
                 }
 
-                config.setProperty("password1",pass);
+                config.setProperty("password",pass);
 
 
                 // Create a file handler and associate it with the configuration
@@ -115,7 +115,7 @@ public class Configuration extends JPanel {
 
                if(config != null){
                    String pass = "";
-                   int len=config.getString("password1").length();
+                   int len=config.getString("password").length();
 
                    textField1.setText(config.getString("endpoint"));
                    textField2.setText(config.getString("user"));
@@ -124,7 +124,7 @@ public class Configuration extends JPanel {
 
                        try {
 
-                           byte[] decode = Base64.getDecoder().decode(config.getString("password1").getBytes());
+                           byte[] decode = Base64.getDecoder().decode(config.getString("password").getBytes());
                            pass = new String(decode, "utf-8");
                        } catch (UnsupportedEncodingException ex) {
                            ex.printStackTrace();
